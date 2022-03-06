@@ -1,14 +1,17 @@
+postgres:
+	docker run --name simplebank-postgres -p 5432:5432 -e POSTGRES_USER=root -e POSTGRES_PASSWORD=secret -d postgres:12-alpine
+
 createdb:
-	sudo docker exec default-psql createdb simplebank
+	docker exec simplebank-postgres createdb simplebank
 
 dropdb:
-	sudo docker exec default-psql dropdb simplebank
+	docker exec simplebank-postgres dropdb simplebank
 
 migrateup:
-	migrate -path db/migration -database "postgresql://postgres:secret@127.0.01:5432/simplebank?sslmode=disable" --verbose up
+	migrate -path db/migration -database "postgresql://root:secret@127.0.01:5432/simplebank?sslmode=disable" --verbose up
 
 migratedown:
-	migrate -path db/migration -database "postgresql://postgres:secret@127.0.01:5432/simplebank?sslmode=disable" --verbose down
+	migrate -path db/migration -database "postgresql://root:secret@127.0.01:5432/simplebank?sslmode=disable" --verbose down
 sqlc:
 	sqlc generate
 
