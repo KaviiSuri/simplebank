@@ -39,6 +39,8 @@ This applciation is built during [this course](https://www.udemy.com/course/back
     - To handle this, I had to implement the `addMoney` method in [store.go](./db/sqlc/store.go) which is called with the smaller ID first. (see `TransferTx`)
     - **The best way to deal with deadlocks is to avoid them**
 
+- **JWT vs PASETO** - I generally assumed that JWT works fine and wasn't aware of it's vulnerabilities. But I learnt that JWT is regarded as a poorly written standard and exposes security vulnerabilities. It seems there is common consensus that **PASETO** (**P**latform **A**gnostic **SE**ecure **TO**kens- the newer standard for tokens) should be used.
+
 ### Isolation Levels and Their behaviour in different DB Engines
 
 ![Postgres](./images/postgres-isolation.png)
